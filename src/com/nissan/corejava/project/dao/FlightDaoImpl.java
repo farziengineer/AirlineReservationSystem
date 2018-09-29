@@ -67,13 +67,18 @@ public class FlightDaoImpl implements FlightDao {
 		Statement st;
 		try {
 			st = con.createStatement();
-			String str = "update Flight set arrivalTime=?, departureTime=? where id="+flightId;
+			String str = "update Flight set arrivalTime=?, departureTime=?, source=?, "
+					+ "destination=?, airline=?, numOfSeats=?, status=? where id="+flightId;
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
-			stmt.setString(1,"24");
-			stmt.setString(2,"1234");  
-			  
+			stmt.setString(1,arrivalTime);
+			stmt.setString(2,departureTime);  
+			stmt.setString(3, source);
+			stmt.setString(4, destination);
+			stmt.setString(5, airline);
+			stmt.setInt(6, numOfSeats);
+			stmt.setInt(7, status);
 			int i=stmt.executeUpdate();  
-			System.out.println(i+" records inserted");  			
+			System.out.println(i+" records updated");  			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
