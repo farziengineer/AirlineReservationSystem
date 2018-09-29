@@ -6,5 +6,6 @@ public interface FlightDao{
 	public void deleteFlight(int flightId);
 	public void updateFlight(int flightId, String arrivalTime, String departureTime, String source,
 			String destination, String airline, int numOfSeats, int status);
-	public void addFlight();
+	public void addFlight(String arrivalTime, String departureTime, String source,
+			String destination, String airline, int numOfSeats, int status);
 }

@@ -86,7 +86,31 @@ public class FlightDaoImpl implements FlightDao {
 	
 	}
 	
-	public void addFlight() {
+	public void addFlight(String arrivalTime, String departureTime, String source,
+			String destination, String airline, int numOfSeats, int status) {
+		
+		createConnection();
+		Statement st;
+
+		try {
+			st = con.createStatement();
+			String str = "insert into Flight Values(0, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
+			stmt.setString(1,arrivalTime);
+			stmt.setString(2,departureTime);  
+			stmt.setString(3, source);
+			stmt.setString(4, destination);
+			stmt.setString(5, airline);
+			stmt.setInt(6, numOfSeats);
+			stmt.setInt(7, status);
+			int i=stmt.executeUpdate();  
+			System.out.println(i+" records updated");  			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 }
