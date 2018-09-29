@@ -6,6 +6,7 @@ public class DemoDao {
 		FlightDaoImpl fl = new FlightDaoImpl();
 		fl.showFlight(1);
 		fl.deleteFlight(1);
+		fl.updateFlight(2, "23", "45", "dsaf", "sad", "dfgd", 23, 1);
 	}
 	
 }
