@@ -6,10 +6,7 @@ public class DemoDao {
 		FlightDaoImpl fl = new FlightDaoImpl();
 		CustomerDaoImpl cu = new CustomerDaoImpl();
 		cu.addFlight("anand", "as", "123", "srwedf", "01923819");
-//		fl.showFlight(1);
-//		fl.deleteFlight(1);
-//		fl.updateFlight(35, "23", "45", "dsaf", "sad", "dfgd", 23, 1);
-//		fl.addFlight("324", "453", "sdkfj", "asmdjf", "askflj", 12, 2);
+
 	}
 	
 }
