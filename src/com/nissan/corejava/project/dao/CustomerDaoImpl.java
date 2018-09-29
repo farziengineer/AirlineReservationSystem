@@ -42,7 +42,7 @@ public class CustomerDaoImpl {
 		return null; 
 	}
 	
-	public void deleteFlight(int custId) {
+	public void deleteCustomer(int custId) {
 		createConnection();
 		Statement st;
 
@@ -60,7 +60,7 @@ public class CustomerDaoImpl {
 	
 	}
 	
-	public void updateFlight(int custId, String name, String emailId, String password,
+	public void updateCustomer(int custId, String name, String emailId, String password,
 			String dob, String contact) {
 		createConnection();
 		Statement st;
@@ -83,7 +83,7 @@ public class CustomerDaoImpl {
 	
 	}
 	
-	public void addFlight(String name, String emailId, String password,
+	public void addCustomer(String name, String emailId, String password,
 			String dob, String contact) {
 		
 		createConnection();

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.nissan.corejava.project.pojo.Flight;
+import com.nissan.corejava.project.pojo.Admin;
 
-public class FlightDaoImpl implements FlightDao {
+public class AdminDaoImpl {
 	Connection con = null;
 	
 	public void createConnection() {
@@ -22,13 +22,13 @@ public class FlightDaoImpl implements FlightDao {
 
 	}
 	
-	public Flight showFlight(int flightId)   {
+	public Admin showAdmin(int custId)   {
 
 			createConnection();
 			Statement st;
 			try {
 				st = con.createStatement();
-				String str = "select * from Flight where id="+flightId;
+				String str = "select * from Admin where id="+custId;
 				ResultSet rs = st.executeQuery(str); 
 				rs.next();
 				rs.close();
@@ -42,13 +42,13 @@ public class FlightDaoImpl implements FlightDao {
 		return null; 
 	}
 	
-	public void deleteFlight(int flightId) {
+	public void deleteAdmin(int custId) {
 		createConnection();
 		Statement st;
 
 		try {
 			st = con.createStatement();
-			String str = "delete from Flight where id="+flightId;
+			String str = "delete from Admin where id="+custId;
 			st.executeUpdate(str); 
 			st.close();
 			
@@ -60,24 +60,22 @@ public class FlightDaoImpl implements FlightDao {
 	
 	}
 	
-	public void updateFlight(int flightId, String arrivalTime, String departureTime, String source,
-			String destination, String airline, int numOfSeats, int status) {
+	public void updateAdmin(int custId, String name, String emailId, String password,
+			String dob, String contact) {
 		createConnection();
 		Statement st;
 		try {
 			st = con.createStatement();
-			String str = "update Flight set arrivalTime=?, departureTime=?, source=?, "
-					+ "destination=?, airline=?, numOfSeats=?, status=? where id="+flightId;
+			String str = "update Flight set  name=?, emailId=?, "
+					+ "password=?, dob=?, contact=? where id="+custId;
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
-			stmt.setString(1,arrivalTime);
-			stmt.setString(2,departureTime);  
-			stmt.setString(3, source);
-			stmt.setString(4, destination);
-			stmt.setString(5, airline);
-			stmt.setInt(6, numOfSeats);
-			stmt.setInt(7, status);
+			stmt.setString(1, name);
+			stmt.setString(2, emailId);  
+			stmt.setString(3, password);
+			stmt.setString(4, dob);
+			stmt.setString(5, contact);
 			int i=stmt.executeUpdate();  
-			System.out.println(i+" records updated");  			
+			System.out.println(i+" records updated in Admin db");  			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,24 +83,23 @@ public class FlightDaoImpl implements FlightDao {
 	
 	}
 	
-	public void addFlight(String arrivalTime, String departureTime, String source,
-			String destination, String airline, int numOfSeats, int status) {
+	public void addAdmin(String name, String emailId, String password,
+			String dob, String contact) {
 		
 		createConnection();
 		Statement st;
 
 		try {
 			st = con.createStatement();
-			String str = "insert into Flight Values(0, ?, ?, ?, ?, ?, ?, ?)";
+			String str = "insert into Admin Values(0, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
-			stmt.setString(1,arrivalTime);
-			stmt.setString(2,departureTime);  
-			stmt.setString(3, source);
-			stmt.setString(4, destination);
-			stmt.setString(5, airline);
-			stmt.setInt(6, numOfSeats);
-			stmt.setInt(7, status);
+			stmt.setString(1, name);
+			stmt.setString(2, emailId);  
+			stmt.setString(3, password);
+			stmt.setString(4, dob);
+			stmt.setString(5, contact);
 			int i=stmt.executeUpdate();  
+			System.out.println(i+" records updated in Admin db");			
 			System.out.println(i+" records updated");  			
 			
 		} catch (Exception e) {
@@ -112,4 +109,7 @@ public class FlightDaoImpl implements FlightDao {
 		
 		
 	}
+
+	
+	
 }
