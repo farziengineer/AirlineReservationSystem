@@ -30,7 +30,10 @@ public class FlightDaoImpl implements FlightDao {
 				st = con.createStatement();
 				String str = "select * from Flight where id="+flightId;
 				ResultSet rs = st.executeQuery(str); 
-				System.out.println(rs.getString(2));
+				rs.next();
+				rs.close();
+				st.close();
+				System.out.println(rs.getInt(1));
 				
 			} catch (SQLException e) {
 				
@@ -40,7 +43,22 @@ public class FlightDaoImpl implements FlightDao {
 	}
 	
 	public void deleteFlight(int flightId) {
+		createConnection();
+		Statement st;
+
+		try {
+			st = con.createStatement();
+			String str = "delete from Flight where id="+flightId;
+			st.executeUpdate(str); 
+			st.close();
+//			System.out.println(rs.getInt(1));
+			
+		} catch (SQLException e) {
+			
+		}
+
 		
+	
 	}
 	
 	public void updateFlight(int flightId) {
