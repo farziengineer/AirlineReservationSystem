@@ -9,10 +9,10 @@ public class Flight {
 	private String destination;
 	private String airline;
 	private int numberOfSeats;
-	private enum status{}
+	private int status;
 	
 	public Flight(int flightId, String arrivalTime, String departureTime, String source, String destination,
-			String airline, int numberOfSeats) {
+			String airline, int numberOfSeats, int status) {
 		super();
 		this.flightId = flightId;
 		this.arrivalTime = arrivalTime;
@@ -21,6 +21,7 @@ public class Flight {
 		this.destination = destination;
 		this.airline = airline;
 		this.numberOfSeats = numberOfSeats;
+		this.status = status;
 	}
 
 	public int getFlightId() {
@@ -79,6 +80,12 @@ public class Flight {
 		this.source = source;
 	};
 	
+	public int getStatus() {
+		return this.status;
+	}
 	
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
 }
