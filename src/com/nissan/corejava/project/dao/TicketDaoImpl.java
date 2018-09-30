@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.nissan.corejava.project.pojo.Customer;
 import com.nissan.corejava.project.pojo.Ticket;
 
 public class TicketDaoImpl implements TicketDao {
@@ -20,6 +21,42 @@ public class TicketDaoImpl implements TicketDao {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public boolean verifyTicketId(Customer cust, int ticketId) {
+		createConnection();
+		Statement st;
+		try {
+			st = con.createStatement();
+			String str = "select * from Ticket where cust_id="+cust.getId();
+			ResultSet rs = st.executeQuery(str); 
+			while(rs.next()) {
+				if(rs.getInt(1) == ticketId)
+					return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+			
+		return false;
+	}
+	public void showAll(Customer cust) {
+		createConnection();
+		Statement st;
+		try {
+			st = con.createStatement();
+			String str = "select * from Ticket where cust_id="+cust.getId();
+			ResultSet rs = st.executeQuery(str); 
+			while(rs.next()) {
+				System.out.println(rs.getInt(1) + " " + rs.getInt(2) + " " + rs.getInt(3) + " " + rs.getString(4) + " " + rs.getString(5) + " "  + rs.getString(6) + " " +
+			rs.getString(7) + " " + rs.getInt(8));
+			}
+		} catch (SQLException e) {
+//			e.printStackTrace();
+		}
+	
+		
 	}
 	
 	public Ticket showTicket(int ticketId)   {
@@ -48,7 +85,7 @@ public class TicketDaoImpl implements TicketDao {
 
 		try {
 			st = con.createStatement();
-			String str = "delete from Ticket where id="+ticketId;
+			String str = "delete from Ticket where ticket_id="+ticketId;
 			st.executeUpdate(str); 
 			st.close();
 			
@@ -88,18 +125,18 @@ public class TicketDaoImpl implements TicketDao {
 
 		try {
 			st = con.createStatement();
-			String str = "insert into Customer Values(0, ?, ?, ?, ?, ?, ?, ?)";
+			String str = "insert into Ticket Values(0, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
-			stmt.setInt(2, flightId);
-			stmt.setInt(3, custId);
-			stmt.setString(4, name);
-			stmt.setString(5, email);  
-			stmt.setString(6, dob);
-			stmt.setString(7, contact);
-			stmt.setInt(8, status);
+			stmt.setInt(1, flightId);
+			stmt.setInt(2, custId);
+			stmt.setString(3, name);
+			stmt.setString(4, email);  
+			stmt.setString(5, dob);
+			stmt.setString(6, contact);
+			stmt.setInt(7, status);
 			int i=stmt.executeUpdate();  
-			System.out.println(i+" records updated in Customer db");			
-			System.out.println(i+" records updated");  			
+//			System.out.println(i+" records updated in Customer db");			
+//			System.out.println(i+" records updated");  			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

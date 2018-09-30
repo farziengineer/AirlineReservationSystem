@@ -43,19 +43,31 @@ public class CustomerViewUtility {
 		}
 	}
 
-	public void cancelFlight() {
-		// TODO Auto-generated method stub
+	public void cancelFlight(Customer c) {
+		showBooking(c);
+		System.out.println("Please enter the ticket id you want to cancel");
+		Scanner input = new Scanner(System.in);
+		int ticketId = input.nextInt();
+		TicketDaoImpl tickImp = new TicketDaoImpl();
+		while(tickImp.verifyTicketId(c, ticketId) == false)
+		{
+			System.out.println("Please enter a valid ticket id");
+			ticketId = input.nextInt();
+		}
+		tickImp.deleteTicket(ticketId);
+		System.out.println("Ticket "+ticketId+ " deleted");
 		
 	}
 
-	public void resheduleFlight() {
-		// TODO Auto-generated method stub
-		
+	public void resheduleFlight(Customer c) {
+		showBooking(c);
+		System.out.println("Enter the ticket_id you want to reschedule");
 	}
 
-	public void showBooking() {
-		// TODO Auto-generated method stub
-		
+	public void showBooking(Customer c) {
+		TicketDaoImpl tickImp = new TicketDaoImpl();
+		System.out.println("Showing all previous bookings");
+		tickImp.showAll(c);
 	}
 
 	
