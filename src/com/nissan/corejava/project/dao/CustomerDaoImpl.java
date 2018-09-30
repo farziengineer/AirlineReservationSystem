@@ -22,6 +22,30 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	}
 	
+	public Customer getCustomer(String username, String password) {
+		createConnection();
+		Statement st;
+		try {
+			String str = "select * from customer where name=? and password=?";
+			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
+			stmt.setString(1, username);
+			stmt.setString(2, password);  
+			ResultSet rs = stmt.executeQuery(); 
+			if(rs == null)
+				return null;
+			rs.next();
+			Customer cus = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+			return cus;
+			
+		} catch (SQLException e) {
+			
+//			e.printStackTrace();
+		}
+	
+	return null; 
+		
+	}
+	
 	public Customer showCustomer(int custId)   {
 
 			createConnection();
@@ -33,7 +57,9 @@ public class CustomerDaoImpl implements CustomerDao{
 				rs.next();
 				rs.close();
 				st.close();
+				Customer cus = new Customer(custId, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				System.out.println(rs.getInt(1));
+				return cus;
 				
 			} catch (SQLException e) {
 				

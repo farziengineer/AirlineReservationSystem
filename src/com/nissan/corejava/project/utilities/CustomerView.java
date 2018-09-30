@@ -6,7 +6,7 @@ import com.nissan.corejava.project.pojo.Customer;
 
 public class CustomerView {
 
-	void display(Customer c) {
+	public void display(Customer c) {
 		
 		System.out.println("WELCOME,");
 		System.out.println(c.getName());

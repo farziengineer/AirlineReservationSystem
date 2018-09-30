@@ -1,7 +1,11 @@
+package com.nissan.coerjava.project.test;
+
 import java.util.Scanner;
 
+import com.nissan.corejava.project.dao.CustomerDaoImpl;
 import com.nissan.corejava.project.pojo.Admin;
 import com.nissan.corejava.project.pojo.Customer;
+import com.nissan.corejava.project.utilities.CustomerView;
 import com.nissan.corejava.project.utilities.LoginAdmin;
 import com.nissan.corejava.project.utilities.LoginCustomer;
 
@@ -32,29 +36,24 @@ public class ProjectTest {
 						while(true) {
 						LoginCustomer user = new LoginCustomer();
 						user.inputDetails();
-					
-						if( user.Verify()==true);
+						CustomerDaoImpl cusImpl = new CustomerDaoImpl();
+						Customer customer = cusImpl.getCustomer(user.getName(), user.getPassword());
+						
+						
+						
+						if(customer != null)
 						{
-							Customer customer = new Customer();
-							//CustomerView view = new CustomerView(customer);
-							// view.display();
+							System.out.println(customer);
+							CustomerView view = new CustomerView();
+							view.display(customer);
 						}
-						if(user.Verify()==false){
+						else
+						{
 							System.out.println("IncorrectDetails");
 						}
 					}
-				} else if(option==2) {
-					LoginAdmin admin = new LoginAdmin();
-					admin.inputDetails();
-					if( admin.Verify()==true);
-					{
-						Admin admin1 = new Admin(option, null, null, null, null, option);
-						//AdminView view = new AdminView(admin1);
-						// view.display();
-					} 
-					if(admin.Verify()==false){
-						System.out.println("IncorrectDetails");
-					}
+				} 
+				else if(option==2) {
 				}
 				
 			}

@@ -3,7 +3,6 @@ package com.nissan.corejava.project.utilities;
 public class CustomerViewUtility {
 
 	public void bookFlight() {
-		// TODO Auto-generated method stub
 		
 	}
 
