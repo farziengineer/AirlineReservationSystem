@@ -24,7 +24,7 @@ public class ProjectTest {
 			if(option==1) {
 				
 				System.out.println("PRESS \n 1.User \n 2.Admin \n 3.EXIT");
-				int choice = nextInt();
+				int choice = input.nextInt();
 				
 				
 			}
