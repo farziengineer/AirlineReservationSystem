@@ -70,7 +70,7 @@ public class FlightDaoImpl implements FlightDao {
 			st.close();
 			
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 
 		

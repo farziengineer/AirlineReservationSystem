@@ -53,11 +53,20 @@ public class AdminViewUtility {
 	}
 
 	public void cancelFlight() {
+		FlightDaoImpl flightImpl = new FlightDaoImpl();
+		flightImpl.showAllFlight();
+		System.out.println("Choose the id of the fight you want to cancel");
+		Scanner input = new Scanner(System.in);
+		int flightId = input.nextInt();
+		flightImpl.deleteFlight(flightId);
+		System.out.println("deleted");
 		
 	}
 
 	public void showBooking() {
-		// TODO Auto-generated method stub
+		FlightDaoImpl flightImpl = new FlightDaoImpl();
+		flightImpl.showAllFlight();
+
 		
 	}
 
