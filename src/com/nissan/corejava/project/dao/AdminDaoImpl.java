@@ -9,7 +9,7 @@ import java.sql.Statement;
 import com.mysql.jdbc.PreparedStatement;
 import com.nissan.corejava.project.pojo.Admin;
 
-public class AdminDaoImpl {
+public class AdminDaoImpl implements AdminDao{
 	Connection con = null;
 	
 	public void createConnection() {

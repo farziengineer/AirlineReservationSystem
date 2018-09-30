@@ -18,7 +18,8 @@ abstract public class User {
 		this.dob = dob;
 		this.contact = contact;
 	}
-
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -63,4 +64,7 @@ abstract public class User {
 		this.password = password;
 	}
 	
+	public String getPassword() {
+		return this.password;
+	}
 }

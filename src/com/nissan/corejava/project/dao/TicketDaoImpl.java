@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.nissan.corejava.project.pojo.Customer;
+import com.nissan.corejava.project.pojo.Ticket;
 
-public class CustomerDaoImpl implements CustomerDao{
+public class TicketDaoImpl implements TicketDao {
 	Connection con = null;
 	
 	public void createConnection() {
@@ -22,13 +22,13 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	}
 	
-	public Customer showCustomer(int custId)   {
+	public Ticket showTicket(int ticketId)   {
 
 			createConnection();
 			Statement st;
 			try {
 				st = con.createStatement();
-				String str = "select * from Customer where id="+custId;
+				String str = "select * from Ticket where id="+ticketId;
 				ResultSet rs = st.executeQuery(str); 
 				rs.next();
 				rs.close();
@@ -42,13 +42,13 @@ public class CustomerDaoImpl implements CustomerDao{
 		return null; 
 	}
 	
-	public void deleteCustomer(int custId) {
+	public void deleteTicket(int ticketId) {
 		createConnection();
 		Statement st;
 
 		try {
 			st = con.createStatement();
-			String str = "delete from Customer where id="+custId;
+			String str = "delete from Ticket where id="+ticketId;
 			st.executeUpdate(str); 
 			st.close();
 			
@@ -60,20 +60,18 @@ public class CustomerDaoImpl implements CustomerDao{
 	
 	}
 	
-	public void updateCustomer(int custId, String name, String emailId, String password,
-			String dob, String contact) {
+	public void updateTicket(int ticketId, String name, String email, String dob, String contact, int status) {
 		createConnection();
 		Statement st;
 		try {
 			st = con.createStatement();
-			String str = "update Flight set  name=?, emailId=?, "
-					+ "password=?, dob=?, contact=? where id="+custId;
+			String str = "update Flight set  name=?, email=?, dob=?, contact=?, ticket_status=? where id="+ticketId;
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
 			stmt.setString(1, name);
-			stmt.setString(2, emailId);  
-			stmt.setString(3, password);
-			stmt.setString(4, dob);
-			stmt.setString(5, contact);
+			stmt.setString(2, email);  
+			stmt.setString(3, dob);
+			stmt.setString(4, contact);
+			stmt.setInt(5, status);
 			int i=stmt.executeUpdate();  
 			System.out.println(i+" records updated in Customer db");  			
 			
@@ -83,21 +81,22 @@ public class CustomerDaoImpl implements CustomerDao{
 	
 	}
 	
-	public void addCustomer(String name, String emailId, String password,
-			String dob, String contact) {
+	public void addTicket(int flightId, int custId, String name, String email, String dob, String contact, int status) {
 		
 		createConnection();
 		Statement st;
 
 		try {
 			st = con.createStatement();
-			String str = "insert into Customer Values(0, ?, ?, ?, ?, ?)";
+			String str = "insert into Customer Values(0, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
-			stmt.setString(1, name);
-			stmt.setString(2, emailId);  
-			stmt.setString(3, password);
-			stmt.setString(4, dob);
-			stmt.setString(5, contact);
+			stmt.setInt(2, flightId);
+			stmt.setInt(3, custId);
+			stmt.setString(4, name);
+			stmt.setString(5, email);  
+			stmt.setString(6, dob);
+			stmt.setString(7, contact);
+			stmt.setInt(8, status);
 			int i=stmt.executeUpdate();  
 			System.out.println(i+" records updated in Customer db");			
 			System.out.println(i+" records updated");  			
