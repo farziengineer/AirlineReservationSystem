@@ -91,6 +91,15 @@ public class AdminDaoImpl implements AdminDao{
 
 		try {
 			st = con.createStatement();
+			String strk = "select *  from Admin";
+			ResultSet rs = st.executeQuery(strk); 
+			int cnt = 0;
+			while(rs.next())cnt++;
+			if(cnt == 1) {
+				System.out.println("Only one admin is possible in db");
+				return;
+			}
+			
 			String str = "insert into Admin Values(0, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
 			stmt.setString(1, name);
