@@ -8,6 +8,9 @@ import com.nissan.corejava.project.pojo.Customer;
 import com.nissan.corejava.project.utilities.CustomerView;
 import com.nissan.corejava.project.utilities.LoginAdmin;
 import com.nissan.corejava.project.utilities.LoginCustomer;
+import com.nissan.corejava.project.utilities.RegisterCustomer;
+import com.nissan.corejava.project.utilities.RegisterAdmin;
+
 
 
 public class ProjectTest {
@@ -24,14 +27,28 @@ public class ProjectTest {
 			if(option==1) {
 				
 				System.out.println("PRESS \n 1.User \n 2.Admin \n 3.EXIT");
-				int choice = input.nextInt();
+				int option_register = input.nextInt();
+				if(option_register==1) {
+					RegisterCustomer registerUser = new RegisterCustomer();
+					registerUser.inputDetails();
+					registerUser.register();
+				}
 				
+				if(option_register==2) {
+					RegisterAdmin registerAdmin = new RegisterAdmin();
+					registerAdmin.inputDetails();
+					registerAdmin.register();
+				}
+				if(option_register==3) {
+					break;
+				}				
+				
+								
 				
 			}
 			else if(option==2) {
 				
-				System.out.println("PRESS \n 1.User \n 2.Admin \n 3.EXIT");
-				option = input.nextInt();
+			
 				
 				if(option==1) {
 						while(true) {

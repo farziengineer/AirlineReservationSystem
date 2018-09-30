@@ -9,6 +9,15 @@ abstract public class User {
 	private String dob;
 	private String contact;
 	
+	public User(String name, String email, String password, String dob, String contact) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.dob = dob;
+		this.contact = contact;
+	}
+	
 	public User(int id, String name, String email, String password, String dob, String contact) {
 		super();
 		this.id = id;
