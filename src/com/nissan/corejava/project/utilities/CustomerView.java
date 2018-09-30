@@ -22,7 +22,7 @@ public class CustomerView {
 			CustomerViewUtility viewUtility = new  CustomerViewUtility();
 			switch(option) {
 			
-				case 1: viewUtility.bookFlight();
+				case 1: viewUtility.bookFlight(c);
 					break;
 				case 2: viewUtility.cancelFlight();
 					break;

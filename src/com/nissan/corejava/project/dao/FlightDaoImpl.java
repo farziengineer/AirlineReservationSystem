@@ -22,6 +22,23 @@ public class FlightDaoImpl implements FlightDao {
 
 	}
 	
+	public void showAllFlight() {
+		createConnection();
+		Statement st;
+		try {
+			st = con.createStatement();
+			String str = "select * from Flight";
+			ResultSet rs = st.executeQuery(str); 
+			while(rs.next()) {
+				System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)+ " " + rs.getString(5) + " " + rs.getString(6) + " " + rs.getString(7) + " " + rs.getString(8));
+			}
+			
+		} catch (SQLException e) {
+			
+		}
+		
+	}
+	
 	public Flight showFlight(int flightId)   {
 
 			createConnection();
@@ -31,12 +48,12 @@ public class FlightDaoImpl implements FlightDao {
 				String str = "select * from Flight where id="+flightId;
 				ResultSet rs = st.executeQuery(str); 
 				rs.next();
-				rs.close();
-				st.close();
-				System.out.println(rs.getInt(1));
+//				System.out.println(rs.getInt(1));
+				Flight fl = new Flight(flightId, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
 				
+				return fl;
 			} catch (SQLException e) {
-				
+				e.printStackTrace();
 			}
 		
 		return null; 

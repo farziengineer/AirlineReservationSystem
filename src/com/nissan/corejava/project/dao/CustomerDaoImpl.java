@@ -39,10 +39,29 @@ public class CustomerDaoImpl implements CustomerDao{
 			
 		} catch (SQLException e) {
 			
-//			e.printStackTrace();
 		}
 	
 	return null; 
+		
+	}
+	
+	public void showAllCustomer() {
+		createConnection();
+		Statement st;
+		try {
+			st = con.createStatement();
+			String str = "select * from Customer ";
+			ResultSet rs = st.executeQuery(str); 
+			while(rs.next()) {
+				System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " +  rs.getString(3) + " " +  rs.getString(4) + " " +  rs.getString(5) + " " +  rs.getString(6));
+			}
+			rs.next();
+			rs.close();
+			st.close();
+			
+		} catch (SQLException e) {
+			
+		}
 		
 	}
 	
