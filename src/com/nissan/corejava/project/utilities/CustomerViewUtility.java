@@ -67,6 +67,8 @@ public class CustomerViewUtility {
 	public void showBooking(Customer c) {
 		TicketDaoImpl tickImp = new TicketDaoImpl();
 		System.out.println("Showing all previous bookings");
+//		System.out.println(c.getName());
+		System.out.println("TicketID | NAME | MAIL | DOB | CONTACT | TICKET_STATUS | FLIGHT_ID | CUST_ID ");
 		tickImp.showAll(c);
 	}
 

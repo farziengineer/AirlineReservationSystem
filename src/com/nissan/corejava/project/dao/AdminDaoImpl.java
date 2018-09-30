@@ -122,7 +122,7 @@ public Admin getAdmin(String name,String password) {
 	createConnection();
 	Statement st;
 	try {
-		String str = "select * from admin where cust_id=2";
+		String str = "select * from admin where cust_id=1";
 		PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
 		ResultSet rs = stmt.executeQuery(); 
 		rs.next();

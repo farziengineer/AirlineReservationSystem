@@ -34,6 +34,8 @@ public class CustomerView {
 				case 5: System.out.println("Thank You");
 					break;
 			}
+			if(option==5)
+				break;
 		}
 		
 		

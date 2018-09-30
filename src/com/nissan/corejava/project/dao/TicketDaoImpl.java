@@ -46,11 +46,13 @@ public class TicketDaoImpl implements TicketDao {
 		Statement st;
 		try {
 			st = con.createStatement();
+//			System.out.println(cust.getId());
 			String str = "select * from Ticket where cust_id="+cust.getId();
 			ResultSet rs = st.executeQuery(str); 
 			while(rs.next()) {
-				System.out.println(rs.getInt(1) + " " + rs.getInt(2) + " " + rs.getInt(3) + " " + rs.getString(4) + " " + rs.getString(5) + " "  + rs.getString(6) + " " +
-			rs.getString(7) + " " + rs.getInt(8));
+				
+				System.out.println(rs.getInt(1) + "       " + rs.getString(2) + "       " + rs.getString(3) + "       " + rs.getString(4) + "       " + rs.getString(5) + "       "  + rs.getInt(6) + "       " +
+			rs.getInt(7) + "       " + rs.getInt(8));
 			}
 		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -127,13 +129,14 @@ public class TicketDaoImpl implements TicketDao {
 			st = con.createStatement();
 			String str = "insert into Ticket Values(0, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
-			stmt.setInt(1, flightId);
-			stmt.setInt(2, custId);
-			stmt.setString(3, name);
-			stmt.setString(4, email);  
-			stmt.setString(5, dob);
-			stmt.setString(6, contact);
-			stmt.setInt(7, status);
+			
+			stmt.setString(1, name);
+			stmt.setString(2, email);
+			stmt.setString(3, dob);
+			stmt.setString(4, contact);  
+			stmt.setInt(5, status);
+			stmt.setInt(6, flightId );
+			stmt.setInt(7, custId);
 			int i=stmt.executeUpdate();  
 //			System.out.println(i+" records updated in Customer db");			
 //			System.out.println(i+" records updated");  			

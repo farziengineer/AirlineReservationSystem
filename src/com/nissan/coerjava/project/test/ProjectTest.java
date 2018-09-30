@@ -16,6 +16,9 @@ import com.nissan.corejava.project.utilities.RegisterAdmin;
 
 public class ProjectTest {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 	
 		while(true) {
@@ -65,7 +68,8 @@ public class ProjectTest {
 						{
 							System.out.println(customer);
 							CustomerView view = new CustomerView();
-							view.display(customer);
+							view.display(customer);	
+							break;
 						}
 						else
 						{
@@ -80,7 +84,6 @@ public class ProjectTest {
 						loginAdmin.inputDetails();							
 						if( loginAdmin.Verify()==true){
 							Admin admin1 = loginAdmin.getDetails();
-//							System.out.println(admin1);
 							AdminView view = new AdminView();
 							view.display(admin1);
 						}
