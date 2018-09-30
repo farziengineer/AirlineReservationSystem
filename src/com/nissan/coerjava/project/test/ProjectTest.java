@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.nissan.corejava.project.dao.CustomerDaoImpl;
 import com.nissan.corejava.project.pojo.Admin;
 import com.nissan.corejava.project.pojo.Customer;
+import com.nissan.corejava.project.utilities.AdminView;
 import com.nissan.corejava.project.utilities.CustomerView;
 import com.nissan.corejava.project.utilities.LoginAdmin;
 import com.nissan.corejava.project.utilities.LoginCustomer;
@@ -47,10 +48,11 @@ public class ProjectTest {
 				
 			}
 			else if(option==2) {
+				System.out.println("PRESS \n 1.User \n 2.Admin \n 3.EXIT");
+
+				int option_register = input.nextInt();
 				
-			
-				
-				if(option==1) {
+				if(option_register==1) {
 						while(true) {
 						LoginCustomer user = new LoginCustomer();
 						user.inputDetails();
@@ -72,6 +74,21 @@ public class ProjectTest {
 					}
 				} 
 				else if(option==2) {
+					while(true) {
+						LoginAdmin loginAdmin = new LoginAdmin();
+					
+						loginAdmin.inputDetails();							
+						if( loginAdmin.Verify()==true){
+							Admin admin1 = loginAdmin.getDetails();
+//							System.out.println(admin1);
+							AdminView view = new AdminView();
+							view.display(admin1);
+						}
+						
+						if(loginAdmin.Verify()==false){
+							System.out.println("IncorrectDetails");
+						}
+					}				
 				}
 				
 			}

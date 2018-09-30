@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.nissan.corejava.project.pojo.Admin;
+import com.nissan.corejava.project.pojo.Customer;
 
 public class AdminDaoImpl implements AdminDao{
 	Connection con = null;
@@ -115,10 +116,29 @@ public class AdminDaoImpl implements AdminDao{
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
 
-	
+public Admin getAdmin(String name,String password) {
+	createConnection();
+	Statement st;
+	try {
+		String str = "select * from admin where cust_id=2";
+		PreparedStatement stmt=(PreparedStatement) con.prepareStatement(str);  
+		ResultSet rs = stmt.executeQuery(); 
+		rs.next();
+		Admin cus = new Admin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+		rs.close();
+		return cus;
+			
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+return null; 
+		
+		
+		
+}
 	
 }
