@@ -1,5 +1,5 @@
 package com.nissan.corejava.project.dao;
-
+//dao
 import com.nissan.corejava.project.pojo.Admin;
 
 abstract interface AdminDao {
