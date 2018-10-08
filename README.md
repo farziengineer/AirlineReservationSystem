@@ -1,3 +1,2 @@
 # AirlineReservationSystem
-Airline Reservation System Project
-This is the airline reservation system.
+This is the airline reservation system project.
